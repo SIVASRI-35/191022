@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>text summarization</title>
+</head>
+<style>
+body{
+    /*height:723px ;*/
+    background-image:linear-gradient(-45deg ,pink,white,rgba(243, 28, 243, 0.684),rgb(120, 120, 178),white) ;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;}
+h1{
+    color: black;
+    text-align: center;}
+</style>
+<body>
+<h1>TEXT SUMMARIZATION USING T5</h1>
+<form action='/predict' method="post" style="text-align: center;"><!--"{{ url_for('predict')}}"-->
+    <label style="font-size:25px; ">INPUT</label><br>
+    <textarea cols="150" rows="5" name="inp" id="inp1" placeholder="enter input text to summarize"></textarea><br><br>
+
+<input type="submit" onclick="alert('plz wait')" name="submit" value="SUBMIT" id="submit">
+</form><br>
+
+    </body>
+</html>

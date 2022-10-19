@@ -18,7 +18,7 @@ h1{
 </style>
 <body>
 <h1>TEXT SUMMARIZATION USING T5</h1>
-<form action='/predict' method="post" style="text-align: center;"><!--"{{ url_for('predict')}}"-->
+<form action="{{ url_for('predict')}}" method="post" style="text-align: center;"><!--"{{ url_for('predict')}}"-->
     <label style="font-size:25px; ">INPUT</label><br>
     <textarea cols="150" rows="5" name="inp" id="inp1" placeholder="enter input text to summarize"></textarea><br><br>
 

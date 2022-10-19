@@ -1,6 +1,5 @@
 from flask import Flask,render_template,request
-import pickle
-#import torch
+from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
 
 app = Flask(__name__)
 
@@ -11,14 +10,11 @@ def home():
 @app.route("/predict",methods=['GET','POST'])
 def predict():
     try:
-        #device = torch.device('cpu')
         input = request.form.get('inp')
-        #len= request.form.get('num')
-        model = pickle.load(open('t5model.pkl','rb'))
-        tokenizer=pickle.load(open('t5tokenizer.pkl','rb'))
-        
         preprocess_text = input.strip().replace("\n","")
         t5_prepared_Text = "summarize: "+preprocess_text
+        model = T5ForConditionalGeneration.from_pretrained('t5-small')
+        tokenizer = T5Tokenizer.from_pretrained('t5-small')
         
         tokenized_text = tokenizer.encode(t5_prepared_Text, return_tensors="pt")#.to(device)
         # summmarize 
@@ -30,16 +26,10 @@ def predict():
                                     early_stopping=True)
         output = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
         return render_template("res.html",output=output,input=input)
-     
-    except Exception as er:
-        print("-----exception--->",er)
-        return 'exception'
+                   
+    except:
+        return 'error'        
+
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    ''' 
-        res1=''
-        for i in output:
-            res1=res1+i
-            return render_template("res.html",res1=res1,input=input)'''

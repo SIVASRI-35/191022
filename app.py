@@ -27,8 +27,9 @@ def predict():
         output = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
         return render_template("res.html",output=output,input=input)
                    
-    except:
-        return 'error'        
+    except Exception as er:
+        print("-----exception--->",er)
+        return 'exception'        
 
 
 if __name__ == "__main__":
